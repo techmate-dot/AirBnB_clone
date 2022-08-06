@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """ Store all object representation
     """
 import json

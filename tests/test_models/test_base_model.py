@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """A script that test the various functions of the base_model
     """
 from tabnanny import check
