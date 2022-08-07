@@ -13,7 +13,7 @@ class BaseModel:
     def __init__(self, *args, **kwargs) -> None:
         """Assigns all instance attributes
         """
-        DateTime = datetime.datetime.now().isoformat()
+        DateTime = datetime.datetime.now()
         self.created_at = DateTime
         self.id = str(uuid.uuid4())
         self.updated_at = DateTime
@@ -32,7 +32,7 @@ class BaseModel:
         """returns a dict representation the class"""
 
         new_dict = {'__class__': 'BaseModel'}
-        self.created_at = self.created_at
+        self.created_at = self.created_at.isoformat()
         self.updated_at = str(self.updated_at)
         return {**new_dict, **self.__dict__}
 
