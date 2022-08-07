@@ -33,7 +33,7 @@ class BaseModel:
         new_dict = self.__dict__
         new_dict['__class__']: 'BaseModel'
         new_dict['created_at'] = self.created_at
-        new_dict['updated_at'] = self.updated_at.isoformat()
+        new_dict['updated_at'] = self.updated_at
         return new_dict
     def __str__(self) -> str:
         """Returns a string representation of the class"""
