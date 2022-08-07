@@ -25,11 +25,3 @@ class TestBaseModel(unittest.TestCase):
         my_model.save()
         self.assertEqual(type(my_model.updated_at).__name__, 'datetime')
         self.assertFalse(my_model.created_at is my_model.updated_at)
-
-    def test_new_instance(self):
-        """Check to see that a new instance has been made
-        """
-        my_model = BaseModel()
-        my_new_model = BaseModel(my_model.to_dict)
-        self.assertFalse(my_model is my_new_model)
-        self.assertFalse(my_model.id is my_new_model.id)
