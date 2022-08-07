@@ -29,12 +29,11 @@ class BaseModel:
 
     def to_dict(self):
         """returns a dict representation the class"""
-        bm_dict = dict(self.__dict__)
-        bm_dict['__class__'] = type(self).__name__
-        bm_dict['created_at'] = bm_dict['created_at'].isoformat()
-        bm_dict['updated_at'] = bm_dict['updated_at'].isoformat()
-        return bm_dict
-
+        new_dict = dict(self.__dict__)
+        new_dict['__class__'] = type(self).__name__
+        new_dict['created_at'] = self.created_at.isoformat()
+        new_dict['updated_at'] = self.updated_at.isoformat()
+        return new_dict
     def __str__(self) -> str:
         """Returns a string representation of the class"""
 
