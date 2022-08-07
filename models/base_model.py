@@ -26,16 +26,15 @@ class BaseModel:
         """updates the public instance attribute
             updated_at with the current datetime
         """
-        self.updated_at = datetime.datetime.now().isoformat()
+        self.updated_at = datetime.datetime.now()
 
     def to_dict(self):
         """returns a dict representation the class"""
-
-        new_dict = {'__class__': 'BaseModel'}
-        self.created_at = self.created_at.isoformat()
-        self.updated_at = datetime.datetime(self.updated_at)
-        return {**new_dict, **self.__dict__}
-
+        new_dict = self.__dict__
+        new_dict['__class__']: 'BaseModel'
+        new_dict['created_at'] = self.created_at.isoformat()
+        new_dict['updated_at'] = self.updated_at.isoformat()
+        return new_dict
     def __str__(self) -> str:
         """Returns a string representation of the class"""
 
