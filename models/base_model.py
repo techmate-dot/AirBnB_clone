@@ -33,7 +33,7 @@ class BaseModel:
 
         new_dict = {'__class__': 'BaseModel'}
         self.created_at = self.created_at.isoformat()
-        self.updated_at = self.updated_at
+        self.updated_at = datetime.datetime(self.updated_at)
         return {**new_dict, **self.__dict__}
 
     def __str__(self) -> str:
