@@ -32,7 +32,7 @@ class BaseModel:
 
         new_dict = {'__class__': 'BaseModel'}
         self.created_at = str(self.created_at)
-        self.updated_at = str(self.updated_at)
+        self.updated_at = self.updated_at
         return {**new_dict, **self.__dict__}
 
     def __str__(self) -> str:
