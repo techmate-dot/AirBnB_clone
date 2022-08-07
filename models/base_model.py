@@ -26,7 +26,7 @@ class BaseModel:
         """updates the public instance attribute
             updated_at with the current datetime
         """
-        self.updated_at = datetime.datetime.now()
+        self.updated_at = datetime.datetime.now().isoformat()
 
     def to_dict(self):
         """returns a dict representation the class"""
