@@ -31,7 +31,7 @@ class BaseModel:
     def to_dict(self):
         """returns a dict representation the class"""
         new_dict = {'__class__': 'BaseModel'}
-        self.created_at = self.created_at
+        self.created_at = datetime.datetime.now()
         self.updated_at = self.updated_at
         return {**new_dict, **self.__dict__}
 
