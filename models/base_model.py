@@ -3,7 +3,7 @@
     common attributes/methods for other classes
    """
 import uuid
-import datetime
+from datetime import datetime
 
 
 class BaseModel:
@@ -13,7 +13,7 @@ class BaseModel:
     def __init__(self, *args, **kwargs) -> None:
         """Assigns all instance attributes
         """
-        self.created_at = datetime.datetime.now()
+        self.created_at = datetime.now()
         self.id = str(uuid.uuid4())
         self.updated_at = self.created_at
         if kwargs:
@@ -25,7 +25,7 @@ class BaseModel:
         """updates the public instance attribute
             updated_at with the current datetime
         """
-        self.updated_at = datetime.datetime.now()
+        self.updated_at = datetime.now()
 
     def to_dict(self):
         """returns a dict representation the class"""
