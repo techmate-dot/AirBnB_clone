@@ -41,3 +41,4 @@ EOF  help  quit
 (hbnb) 
 $
 ```
+# Todo: change the key to "<class name>.id" e.g "Basemode.121212"
