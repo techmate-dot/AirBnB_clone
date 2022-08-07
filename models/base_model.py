@@ -10,7 +10,7 @@ class BaseModel:
     """A template that defines all common
         attributes/methods for other classes:
     """
-    def __init__(self, *args, **kwargs) -> None:
+    def __init__(self, *args, **kwargs):
         """Assigns all instance attributes
         """
         self.created_at =  datetime.now()
@@ -28,13 +28,14 @@ class BaseModel:
         self.updated_at = datetime.now()
 
     def to_dict(self):
-        """returns a dict representation the class"""
-
-        new_dict = self.__dict__
-        new_dict['__class__'] = 'BaseModel'
-        new_dict['created_at'] = self.created_at.isoformat()
-        new_dict['updated_at'] = self.updated_at.isoformat()
-        return new_dict
+        """Convert instance into dict format"""
+        dictionary = {}
+        dictionary.update(self.__dict__)
+        dictionary.update({'__class__':
+                          (str(type(self)).split('.')[-1]).split('\'')[0]})
+        dictionary['created_at'] = self.created_at.isoformat()
+        dictionary['updated_at'] = self.updated_at.isoformat()
+        return dictionary
 
     def __str__(self) -> str:
         """Returns a string representation of the class"""
