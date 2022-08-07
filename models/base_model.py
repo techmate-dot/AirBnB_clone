@@ -30,7 +30,7 @@ class BaseModel:
     def to_dict(self):
         """returns a dict representation the class"""
         new_dict = dict(self.__dict__)
-        new_dict['__class__'] = type(self).__name__
+        new_dict['__class__'] = self.__class__.__name__
         new_dict['created_at'] = self.updated_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
         new_dict['updated_at'] = self.created_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
         return new_dict
