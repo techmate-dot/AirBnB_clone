@@ -13,7 +13,7 @@ class BaseModel:
     def __init__(self, *args, **kwargs) -> None:
         """Assigns all instance attributes
         """
-        DateTime = datetime.datetime.now()
+        DateTime = datetime.datetime.now().isoformat()
         self.created_at = DateTime
         self.id = str(uuid.uuid4())
         self.updated_at = DateTime
