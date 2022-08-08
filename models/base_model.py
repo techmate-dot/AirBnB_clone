@@ -41,7 +41,7 @@ class BaseModel:
         new_dict['__class__'] = 'BaseModel'
         new_dict['created_at'] = self.updated_at.strftime(time_format)
         new_dict['updated_at'] = self.created_at.strftime(time_format)
-        yield new_dict
+        return new_dict
 
     def __str__(self) -> str:
         """Returns a string representation of the class"""
