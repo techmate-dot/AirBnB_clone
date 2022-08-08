@@ -25,7 +25,7 @@ class FileStorage:
         Args:
             obj (obj): New object that will be save in __objects
         """
-        FileStorage.__objects[obj["id"]] = obj
+        FileStorage.__objects[f'{obj.__class__.__name__}.{obj["id"]}'] = obj
 
     def save(self):
         """ Save the __objects to a file.json
