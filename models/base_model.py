@@ -45,4 +45,4 @@ class BaseModel:
 
     def __str__(self) -> str:
         """Returns a string representation of the class"""
-        return f"[] ({self.id}) {self.__dict__})"
+        return f"[BaseModel] ({self.id}) {self.__dict__})"
