@@ -2,6 +2,7 @@
 """A class BaseModel that defines all
     common attributes/methods for other classes
    """
+from decimal import MIN_ETINY
 import uuid
 from datetime import datetime
 
@@ -25,7 +26,7 @@ class BaseModel:
                     setattr(self, keys, kwargs[keys])
         if not kwargs:
             self.id = str(uuid.uuid4())
-            self.created_at = datetime.now()
+            self.created_at = datetime.now().isoformat()
             self.updated_at = self.created_at
 
     def save(self):
@@ -44,4 +45,7 @@ class BaseModel:
 
     def __str__(self) -> str:
         """Returns a string representation of the class"""
-        return f"[BaseModel] ({self.id}) {self.__dict__})"
+        return f"[{type(self).__name__}] ({self.id}) {self.__dict__})"
+
+my_model = BaseModel()
+print(my_model)
