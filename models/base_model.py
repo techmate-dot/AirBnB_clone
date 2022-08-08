@@ -19,16 +19,16 @@ class BaseModel:
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
         self.updated_at = self.created_at
-        '''if kwargs:
+        if kwargs:
             kwargs.pop("__class__")
             for keys, values in kwargs.items():
                 if keys is 'created_at' or keys is 'updated_at':
                     setattr(self, keys, datetime.strptime(values, time_format))
                 else:
                     setattr(self, keys, kwargs[keys])
-        else:
+        if not kwargs:
             self.created_at = datetime.now()
-            self.updated_at = self.created_at'''
+            self.updated_at = self.created_at
 
     def save(self):
         """updates the public instance attribute
