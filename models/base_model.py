@@ -19,10 +19,12 @@ class BaseModel:
         self.id = str(uuid.uuid4())
         if kwargs:
             kwargs.pop("__class__")
-            for keys in kwargs:
+            for keys, values in kwargs.items():
                 if keys is 'created_at' or keys is 'updated_at':
-                    self.keys = datetime.strptime(kwargs[keys], time_format)
-                    self.keys = kwargs[keys]
+                    setattr(self, keys, datetime.strptime(values, time_format))
+                else:
+                    setattr(self, keys, kwargs[keys])
+            print(kwargs)
         else:
             self.created_at = datetime.now()
             self.updated_at = self.created_at
@@ -43,4 +45,20 @@ class BaseModel:
 
     def __str__(self) -> str:
         """Returns a string representation of the class"""
-        return f"[BaseModel] ({self.id}) {self.__dict__})"
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__})"
+
+my_model = BaseModel()
+my_model.name = "My_First_Model"
+my_model.my_number = 89
+print(my_model.id)
+print(my_model)
+print(type(my_model.created_at))
+print("--")
+my_model_json = my_model.to_dict()
+print(my_model_json)
+print("JSON of my_model:")
+for key in my_model_json.keys():
+    print("\t{}: ({}) - {}".format(key, type(my_model_json[key]), my_model_json[key]))
+
+print("--")
+my_new_model = BaseModel(**my_model_json)
