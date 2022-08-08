@@ -16,9 +16,6 @@ class BaseModel:
     def __init__(self, *args, **kwargs) -> None:
         """Assigns all instance attributes
         """
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = self.created_at
         if kwargs:
             kwargs.pop("__class__")
             for keys, values in kwargs.items():
@@ -27,6 +24,7 @@ class BaseModel:
                 else:
                     setattr(self, keys, kwargs[keys])
         if not kwargs:
+            self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = self.created_at
 
