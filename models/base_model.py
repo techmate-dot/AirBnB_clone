@@ -37,12 +37,12 @@ class BaseModel:
 
     def to_dict(self):
         """returns a dict representation the class"""
-        new_dict = {'__class__': 'base_model'}
-        new_dict.update(dict(self.__dict__))
+        new_dict = dict(self.__dict__)
+        new_dict['__class__'] = self.__class__.__name__
         new_dict['created_at'] = self.updated_at.strftime(time_format)
         new_dict['updated_at'] = self.created_at.strftime(time_format)
         return new_dict
 
     def __str__(self) -> str:
         """Returns a string representation of the class"""
-        return f"[{type(self).__name__}] ({self.id}) {self.__dict__})"
+        return f"[{self.__class__.__name__}]] ({self.id}) {self.__dict__})"
