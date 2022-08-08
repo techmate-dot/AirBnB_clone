@@ -25,14 +25,18 @@ class FileStorage:
         Args:
             obj (obj): New object that will be save in __objects
         """
-        FileStorage.__objects[f'{obj.__class__.__name__}.{obj["id"]}'] = obj
+        FileStorage.__objects[f'BaseModel.{obj.id}'] = obj
 
     def save(self):
         """ Save the __objects to a file.json
         """
+        temp = {}
+        temp.update(FileStorage.__objects)
         with open(FileStorage.__file_path, 'w', encoding='UTF-8') as json_file:
-            if len(FileStorage.__objects) != 0:
-                json.dump(FileStorage.__objects, json_file, indent=4)
+            for key, values in temp.items():
+                if not isinstance(values, dict):
+                    temp[key] = values.to_dict()
+            json.dump(temp, json_file, indent=4)
 
     def reload(self):
         """ Reads from file.json and saves it to __objects
