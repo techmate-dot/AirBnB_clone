@@ -13,14 +13,6 @@ class TestBaseModel(unittest.TestCase):
     Args:
         unittest (object): test object
     """
-    def test_updated_at(self):
-        """Ensure that the updated_at is of type Datetime and is
-            not equals created_at
-        """
-        my_model.save()
-        self.assertEqual(type(my_model.updated_at).__name__, 'datetime')
-        self.assertFalse(my_model.created_at is my_model.updated_at)
-
     def test_new_instance(self):
         """Check to see that a new instance has been made
         """
