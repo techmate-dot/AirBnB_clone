@@ -13,6 +13,19 @@ class TestBaseModel(unittest.TestCase):
     Args:
         unittest (object): test object
     """
+    def test_created_at(self):
+        """Ensure that the created_at is of type Datetime and
+            is the same as current time"""
+        self.assertEqual(type(my_model.created_at).__name__, 'datetime')
+
+    def test_updated_at(self):
+        """Ensure that the updated_at is of type Datetime and is
+            not equals created_at
+        """
+        my_model.save()
+        self.assertEqual(type(my_model.updated_at).__name__, 'datetime')
+        self.assertFalse(my_model.created_at is my_model.updated_at)
+
     def test_new_instance(self):
         """Check to see that a new instance has been made
         """
@@ -28,3 +41,9 @@ class TestBaseModel(unittest.TestCase):
     def test__str__(self):
         """checks if a string representation  of the class is returned"""
         self.assertTrue((my_model.__str__(), str))
+
+    def test_todict(self):
+        """ jkjkj9poiioioipoioiok"""
+        i = self.value()
+        n = i.to_dict()
+        self.assertEqual(i.to_dict(), n)
