@@ -2,7 +2,7 @@
 """A script that test the various functions of the base_model
     """
 import unittest
-from base_model import BaseModel
+from models.base_model import BaseModel
 
 my_model = BaseModel()
 
