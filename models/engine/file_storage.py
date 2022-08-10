@@ -42,10 +42,8 @@ class FileStorage:
         """ Reads from file.json and saves it to __objects
         """
         try:
-            with open(self.__file_path, 'r', encoding='utf-8') as f:
-                json_dict = json.load(f)
-                for obj_dict in json_dict.values():
-                    cls = obj_dict['__class__']
-                    self.new(eval('{}({})'.format(cls, '**obj_dict')))
+            with open(FileStorage.__file_path, 'r',
+                      encoding='UTF-8') as json_file:
+                FileStorage.__objects = json.load(json_file)
         except FileNotFoundError:
             pass
