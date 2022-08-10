@@ -36,14 +36,13 @@ class TestBaseModel(unittest.TestCase):
     def test_to_dict(self):
         """check to_dic returns a type dict
         """
-        self.assertTrue(isinstance(my_model.to_dict(), dict))
+        new_dict = my_model.to_dict()
+        self.assertAlmostEqual(new_dict['__class__'], 'BaseModel')
+        self.assertAlmostEqual(new_dict['created_at'],
+                               my_model.created_at.isoformat())
+        self.assertAlmostEqual(new_dict['updated_at'],
+                               my_model.updated_at.isoformat())
 
     def test__str__(self):
         """checks if a string representation  of the class is returned"""
-        self.assertTrue((my_model.__str__(), str))
-
-    def test_todict(self):
-        """ jkjkj9poiioioipoioiok"""
-        i = self.value()
-        n = i.to_dict()
-        self.assertEqual(i.to_dict(), n)
+        self.assertTrue((my_model, str))
