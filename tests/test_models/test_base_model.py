@@ -3,6 +3,7 @@
     """
 import unittest
 from models.base_model import BaseModel
+import time
 
 my_model = BaseModel()
 
@@ -37,10 +38,10 @@ class TestBaseModel(unittest.TestCase):
         """check to_dic returns a type dict
         """
         new_dict = my_model.to_dict()
-        self.assertAlmostEqual(new_dict['__class__'], 'BaseModel')
-        self.assertAlmostEqual(new_dict['created_at'],
+        self.assertTrue(new_dict['__class__'], 'BaseModel')
+        self.assertTrue(new_dict['created_at'],
                                my_model.created_at.isoformat())
-        self.assertAlmostEqual(new_dict['updated_at'],
+        self.assertTrue(new_dict['updated_at'],
                                my_model.updated_at.isoformat())
 
     def test_str(self):
@@ -50,3 +51,10 @@ class TestBaseModel(unittest.TestCase):
         self.assertAlmostEqual(st, str(my_model))
         self.assertAlmostEqual(st[0:11], '[BaseModel]')
         self.assertIsInstance(st, str)
+
+    def test_saves(self):
+        old_time = my_model.updated_at
+        my_model.save()
+        new_time = my_model.updated_at
+        self.assertFalse(old_time == new_time)
+        self.assertNotEqual(old_time, new_time)
