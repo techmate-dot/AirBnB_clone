@@ -43,6 +43,10 @@ class TestBaseModel(unittest.TestCase):
         self.assertAlmostEqual(new_dict['updated_at'],
                                my_model.updated_at.isoformat())
 
-    def test__str__(self):
+    def test_str(self):
         """checks if a string representation  of the class is returned"""
-        self.assertTrue((my_model, str))
+        my_model =  BaseModel()
+        st = my_model.__str__()
+        self.assertAlmostEqual(st, str(my_model))
+        self.assertAlmostEqual(st[0:11], '[BaseModel]')
+        self.assertIsInstance(st, str)
